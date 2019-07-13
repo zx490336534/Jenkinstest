@@ -1,11 +1,9 @@
 pipeline{
-   agent {
-      label 'mymac'
-   }
+   agent any
    stages{
       stage('Example'){
          steps{
-            withPythonEnv('/usr/local/bin/python3'){
+            withPythonEnv('/usr/bin/python'){
                sh 'python -m pip install pytest '
                sh 'python -m pip install allure-pytest'
                sh 'python -m pytest --alluredir=allure-results'
