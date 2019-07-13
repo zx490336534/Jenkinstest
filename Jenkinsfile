@@ -3,8 +3,10 @@ pipeline{
    stages{
       stage('Example'){
          steps{
-            script{
-               echo "${env.g_name}"
+            withPythonEnv('/usr/local/bin/python3'){
+               sh 'pip install pytest'
+               sh 'pip install allure-pytest'
+               sh 'pytest --alluredir=allure_results'
             }
          }
       }
