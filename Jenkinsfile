@@ -6,11 +6,9 @@ pipeline{
       stage('Example'){
          steps{
             withPythonEnv('/usr/local/bin/python3'){
-               sh """
-               python -m pip install pytest && 
-               python -m pip install allure-pytest && 
-               python -m pytest --alluredir=allure-results
-               """
+               sh 'python -m pip install pytest '
+               sh 'python -m pip install allure-pytest'
+               sh 'python -m pytest --alluredir=allure-results'
             }
             exit 0
          }
