@@ -10,8 +10,7 @@ pipeline{
          }
          steps{
             script{
-               sh "${CC} ${DEBUG_FLAGS}"
-               sh "printenv"
+               echo "${env.g_name}"
             }
          }
       }
