@@ -1,6 +1,6 @@
 import org.boon.Boon;
  
-def call = Boon.fromJson(/{
+def jsonEditorOptions = Boon.fromJson(/{
         disable_edit_json: true,
         disable_properties: true,
         no_additional_properties: true,
@@ -24,3 +24,7 @@ def call = Boon.fromJson(/{
             color :"red"
         }
 }/);
+
+def call() {
+  return "${jsonEditorOptions}"
+}
