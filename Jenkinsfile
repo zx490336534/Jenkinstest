@@ -1,11 +1,35 @@
+//@Library('extended-library')
 pipeline{
    agent any
    parameters {
-      string defaultValue: 'none', description: '字符串', name: 'D_ENV', trim: true
-      text defaultValue: 'a\nb\nc\n', description: '文本', name: 'D_TEXT'
-      choice choices: 'a\nb\nc\n', description: '选一个', name: 'D_CHOICE'
-      booleanParam defaultValue: false, description: '布尔值参数', name: 'FLAG'
-      password name: 'PASSWORD',defaultValue:'SECRET',description: 'password'
+      
+  extendedChoice bindings: '', description: '', groovyClasspath: '', groovyScript: '''import org.boon.Boon;
+def jsonEditorOptions = Boon.fromJson(/{
+        disable_edit_json: true,
+        disable_properties: true,
+        no_additional_properties: true,
+        disable_collapse: true,
+        disable_array_add: true,
+        disable_array_delete: true,
+        disable_array_reorder: true,
+        theme: "bootstrap2",
+        iconlib:"fontawesome4",
+        schema: {
+          "title": "Color Picker",
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string",
+              "format": "color"
+            }
+          }
+        },
+        startval: {
+            color :"red"
+        }
+}/);''', multiSelectDelimiter: ',', name: 'Policy', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_JSON', visibleItemCount: 5
+
+
    }
    stages{
       stage('Example'){
